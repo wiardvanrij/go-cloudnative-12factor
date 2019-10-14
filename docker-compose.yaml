@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+   application:
+     depends_on:
+       - redis
+     image:  wiardvanrij/huiswerk:1
+     restart: always
+     ports:
+       - "8080:8080"     
+     environment:
+       COUNTER_RECHECKAMOUNT: 20
+       COUNTER_HEALTHCHECKTIME: 500
+       COUNTER_REDISHOST: "redis:6379"
+   redis:
+     image: redis:5.0.6-alpine3.10
+     restart: always
